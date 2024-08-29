@@ -1,0 +1,35 @@
+name: Nodejs CI/CD pipeline using github actions, docker and AWS
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            # checkout repository
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            # docker login
+            - name: Login to docker
+              run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            # build docker image
+            - name: Build docker image
+              run: docker build -t aniketnitu2026/node-cicd-aws .
+
+            #  push image to docker hub
+            - name: Publish or push docker image to dockerhub
+              run: docker push aniketnitu2026/node-cicd-aws:latest
+
+    deploy:
+        runs-on: unbuntu-latest
+
+        needs: build
+
+        steps:
+            - run: echo "Deploy job running..."
