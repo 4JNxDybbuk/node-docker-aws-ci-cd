@@ -37,4 +37,4 @@ jobs:
 
             #  Start docker container
             - name: Start docker container
-              run: docker run rm -d -p 9500:9500 --name node-app-container aniketnitu2026/node-cicd-aws:latest
+              run: docker run --rm -d -p 9500:9500 --name node-app-container aniketnitu2026/node-cicd-aws:latest
