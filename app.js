@@ -15,6 +15,17 @@ server.get('/api/users', (req, res) => {
     })
 })
 
+server.get('/api/user/:id', (req, res) => {
+    const id = req.params.id
+
+    const user = userData.find(item => item.id == id)
+
+    res.json({
+        message: "User fetch by id..",
+        data: user
+    })
+})
+
 
 
 server.listen(9500, () => console.log("Server started!!"))
