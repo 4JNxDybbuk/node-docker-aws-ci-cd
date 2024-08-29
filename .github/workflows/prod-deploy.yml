@@ -27,9 +27,14 @@ jobs:
               run: docker push aniketnitu2026/node-cicd-aws:latest
 
     deploy:
-        runs-on: ubuntu-latest
-
         needs: build
+        runs-on: aws-ec2 # self hosted runner
 
         steps:
-            - run: echo "Deploy job running..."
+            # Pull docker image
+            - name: Pull docker image from docker hub
+              run: docker pull aniketnitu2026/node-cicd-aws:latest
+
+            #  Start docker container
+            - name: Start docker container
+              run: docker run rm -d -p 9500:9500 --name node-app-container aniketnitu2026/node-cicd-aws:latest
