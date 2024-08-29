@@ -27,7 +27,7 @@ jobs:
               run: docker push aniketnitu2026/node-cicd-aws:latest
 
     deploy:
-        runs-on: unbuntu-latest
+        runs-on: ubuntu-latest
 
         needs: build
 
