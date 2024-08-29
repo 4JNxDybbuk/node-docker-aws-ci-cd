@@ -37,7 +37,7 @@ jobs:
 
             # delete old container
             - name: Delete old container
-              run: docker rm -f nodejs-app-container
+              run: docker rm -f node-app-container
 
             #  Start docker container
             - name: Start docker container
